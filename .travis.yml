@@ -1,0 +1,17 @@
+sudo: required
+
+language: java
+jdk:
+  - openjdk8
+
+addons:
+  sonarcloud:
+    organization: "api-testing-training-01"
+    token: ${SONAR_TOKEN}
+
+script:
+  - ./gradlew check
+  - sonar-scanner
+
+notifications:
+  email: true
