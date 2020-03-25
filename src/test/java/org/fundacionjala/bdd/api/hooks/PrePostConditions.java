@@ -17,12 +17,12 @@ public class PrePostConditions {
         this.helper = helper;
     }
 
-    @Before(value = "@createProjectPreCond1", order = 0)
+    @Before(value = "@createProjectPreCond", order = 0)
     public void createProject() {
         System.out.println("Executing before scenario");
     }
 
-    @Before(value = "@createProjectPreCond2", order = 1)
+    @Before(value = "@deleteProjectPreCond2", order = 1)
     public void createProject2() {
         System.out.println("Executing before scenario");
     }
