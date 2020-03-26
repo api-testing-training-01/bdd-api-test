@@ -1,56 +1,95 @@
 package org.fundacionjala.bdd.api.stepdefs;
 
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.fundacionjala.bdd.api.EnvReader;
 import org.fundacionjala.bdd.api.utils.Helper;
+import org.testng.AssertJUnit;
 
 import java.io.File;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
-import static org.testng.Assert.assertEquals;
+
 
 public class MyStepdefs {
 
-    private Response response;
     private Helper helper;
 
     public MyStepdefs(final Helper helper) {
         this.helper = helper;
     }
 
-    @When("I send GET request to {string}")
-    public void iSendGETRequestTo(final String endpoint) {
-        response = given()
-                .header("X-TrackerToken", EnvReader.getInstance().getApiToken())
-                .header("Content-Type", "application/json")
-                .when()
-                .get(endpoint);
+    @Given("Valid token for {string}")
+    public void validTokenFor(final String urlTarget) {
+        RequestSpecification headerResponse = given()
+                .baseUri(urlTarget)
+                .contentType("Application/Json")
+                .queryParam("token", EnvReader.getInstance().getApiToken())
+                .queryParam("key", EnvReader.getInstance().getApiKey());
+        helper.setHeaderResponse(headerResponse);
     }
 
-    @When("I send POST request to {string} with body")
-    public void iSendPOSTRequestToWithBody(final String endpoint, final String body) {
-        response = given()
-                .header("X-TrackerToken", EnvReader.getInstance().getApiToken())
-                .header("Content-Type", "application/json")
-                .when()
-                .body(body)
-                .post(endpoint);
+    @When("I send POST request to {string} to create a board with {string} name")
+    public void iSendPOSTRequestToToCreateABoardWithName(final String urlRequest, String name) {
+        Response bodyResponse= given()
+                .spec(helper.getHeaderResponse())
+                .body("{\"name\":\"" + name + "\",\"desc\":\"testing... boards\"}")
+                .post(urlRequest);
+        JsonPath bodyResponseBoards = new JsonPath(bodyResponse.getBody().asString());
+        String boardId = bodyResponseBoards.getString("id");
+        helper.setBoardId(boardId);
+        helper.setStatusCode(bodyResponse.getStatusCode());
+        helper.setBodyResponse(bodyResponse);
     }
 
-    @Then("Response status code should be {int}")
-    public void responseStatusCodeShouldBe(final int expectedStatusCode) {
-        int actualStatusCode = response.getStatusCode();
-        String id = response.jsonPath().getString("id");
-        helper.addNewId(id);
-        assertEquals(actualStatusCode, expectedStatusCode);
+    @Then("Status code should be {int}")
+    public void statusCodeShouldBe(final int expectedStatusCode) {
+        AssertJUnit.assertEquals(helper.getStatusCode(), expectedStatusCode);
     }
 
-    @Then("Response body should match with {string} json schema")
-    public void responseBodyShouldMatchWithJsonSchema(final String pathSchema) {
-        File schemaFile = new File(pathSchema);
-        response.then().assertThat().body(matchesJsonSchema(schemaFile));
+    @And("Response should match with {string} json schema")
+    public void responseShouldMatchWithJsonSchema(final String pathSchema) {
+        File boardSchemaFile = new File(pathSchema);
+        helper.getBodyResponse()
+                .then()
+                .assertThat()
+                .body(matchesJsonSchema(boardSchemaFile));
+    }
+
+    @When("I send PUT request to {string} to update {string} name")
+    public void iSendPUTRequestToToUpdateName(String url, String newName) {
+        Response bodyResponse = given()
+                .spec(helper.getHeaderResponse())
+                .queryParam("name", newName)
+                .put(url + helper.getId());
+        helper.setStatusCode(bodyResponse.getStatusCode());
+        helper.setBodyResponse(bodyResponse);
+    }
+
+    @When("I send GET request to {string} body board")
+    public void iSendGETRequestToBodyBoard(String url) {
+        Response bodyResponse = given()
+                .spec(helper.getHeaderResponse())
+                .get(url + helper.getId());
+        helper.setStatusCode(bodyResponse.getStatusCode());
+        helper.setBodyResponse(bodyResponse);
+    }
+
+    @When("I send Delete request to {string} to delete a board already created")
+    public void iSendDeleteRequestToToDeleteABoardAlreadyCreated(String url) {
+        Response bodyResponse = given()
+                .baseUri("https://api.trello.com")
+                .contentType("Application/Json")
+                .queryParam("token", EnvReader.getInstance().getApiToken())
+                .queryParam("key", EnvReader.getInstance().getApiKey())
+                .delete(url + helper.getId());
+        helper.setStatusCode(bodyResponse.getStatusCode());
+        helper.setBodyResponse(bodyResponse);
     }
 }
