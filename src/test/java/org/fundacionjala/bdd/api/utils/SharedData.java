@@ -3,17 +3,14 @@ package org.fundacionjala.bdd.api.utils;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Helper {
+public class SharedData {
 
     private String boardId;
     private int statusCode;
     private Response bodyResponse;
     private RequestSpecification headerResponse;
 
-    public Helper() {
+    public SharedData() {
     }
 
     public void setBoardId(final String boardId) {
@@ -32,7 +29,7 @@ public class Helper {
         return statusCode;
     }
 
-    public void setBodyResponse(final Response bodyResponse){
+    public void setBodyResponse(final Response bodyResponse) {
         this.bodyResponse = bodyResponse;
     }
 
@@ -40,7 +37,7 @@ public class Helper {
         return bodyResponse;
     }
 
-    public void setHeaderResponse(final RequestSpecification headerResponse){
+    public void setHeaderResponse(final RequestSpecification headerResponse) {
         this.headerResponse = headerResponse;
     }
 

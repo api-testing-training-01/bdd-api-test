@@ -6,19 +6,16 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.fundacionjala.bdd.api.EnvReader;
-import org.fundacionjala.bdd.api.utils.Helper;
+import org.fundacionjala.bdd.api.utils.SharedData;
 
-import java.util.List;
-
-import static io.restassured.RestAssured.delete;
 import static io.restassured.RestAssured.given;
 
-public class PrePostConditions {
+public class BoardsPrePostConditions {
 
-    private Helper helper;
+    private SharedData sharedData;
 
-    public PrePostConditions(final Helper helper) {
-        this.helper = helper;
+    public BoardsPrePostConditions(final SharedData sharedData) {
+        this.sharedData = sharedData;
     }
 
     @After(value = "@deleteBoard")
@@ -28,7 +25,7 @@ public class PrePostConditions {
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
-                .delete("https://api.trello.com/1/boards/".concat(helper.getId()));
+                .delete("https://api.trello.com/1/boards/".concat(sharedData.getId()));
 
     }
 
@@ -45,6 +42,6 @@ public class PrePostConditions {
                 .post("https://api.trello.com/1/boards");
         JsonPath bodyResponseBoards = new JsonPath(bodyResponse.getBody().asString());
         String boardId = bodyResponseBoards.getString("id");
-        helper.setBoardId(boardId);
+        sharedData.setBoardId(boardId);
     }
 }
