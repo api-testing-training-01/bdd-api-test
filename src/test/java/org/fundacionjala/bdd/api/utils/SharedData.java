@@ -3,14 +3,25 @@ package org.fundacionjala.bdd.api.utils;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SharedData {
 
     private String boardId;
     private int statusCode;
     private Response bodyResponse;
     private RequestSpecification headerResponse;
-
+    private Map<String, Response> responses;
     public SharedData() {
+        responses = new HashMap<>();
+    }
+    public void setResponse (final String key, Response response){
+        responses.put(key, response);
+    }
+
+    public Map<String, Response> getResponse (){
+        return responses;
     }
 
     public void setBoardId(final String boardId) {
