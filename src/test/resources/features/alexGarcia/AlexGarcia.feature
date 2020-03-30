@@ -5,6 +5,9 @@ Feature: CRUD Trello Project
     When I send 'POST' to Trello API with this information
     Then Response status code should be 200
     And Response 'POST' body should match with 'POST' schema
+    And Response should contain the following data
+      |name|BDDTest|
+      |desc|This is a BDD test|
 
   @createDefaultBoard
   Scenario: Get board by id
@@ -12,6 +15,9 @@ Feature: CRUD Trello Project
     When I send 'GET' to Trello API with this information
     Then Response status code should be 200
     And Response 'GET' body should match with 'GET' schema
+    And Response should contain the following data
+      |name|ApiTestingDefault|
+      |desc|Learning to use Cucumber|
 
   @createDefaultBoard
   Scenario: Updated board by id
@@ -21,6 +27,9 @@ Feature: CRUD Trello Project
     When I send 'PUT' to Trello API with this information
     Then Response status code should be 200
     And Response 'PUT' body should match with 'PUT' schema
+    And Response should contain the following data
+      |name|BDDTestUpdate|
+      |desc|This is a Update BDD test|
 
   @createDefaultBoard
   Scenario: Delete board by id

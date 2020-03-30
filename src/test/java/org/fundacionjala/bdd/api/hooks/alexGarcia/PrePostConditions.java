@@ -26,8 +26,8 @@ public class PrePostConditions {
         String  boardId = null;
         response = helper.getInitialValues()
                 .config(config().paramConfig(paramConfig().queryParamsUpdateStrategy(REPLACE)))
-                .queryParam("name", "ApiTesting1")
-                .queryParam("desc", "Aprendiendo a usar Cucumber")
+                .queryParam("name", "ApiTestingDefault")
+                .queryParam("desc", "Learning to use Cucumber")
                 .post("/boards");
         boardId = response.jsonPath().getJsonObject("id");
         helper.addId(boardId);

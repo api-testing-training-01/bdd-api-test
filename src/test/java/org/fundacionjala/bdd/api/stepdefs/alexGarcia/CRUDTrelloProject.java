@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 
 import org.fundacionjala.bdd.api.utils.alexGarcia.Helper;
 import java.io.File;
+import java.util.Map;
 
 import static io.restassured.RestAssured.config;
 import static io.restassured.config.ParamConfig.UpdateStrategy.REPLACE;
@@ -77,5 +78,16 @@ public class CRUDTrelloProject {
     @Given("I have a board id")
     public void iHaveABoardId() {
 
+    }
+
+    @And("Response should contain the following data")
+    public void responseShouldContainTheFollowingData(final Map<String, String> expectedData) {
+        for (String key : expectedData.keySet()) {
+            String actualValue = response.jsonPath().getString(key);
+            String expectedValue = expectedData.get(key);
+            assertEquals(actualValue, expectedValue,
+                    String.format("Assertion Error: The current value is (%s), the expected value is (%s)",
+                            actualValue, expectedValue));
+        }
     }
 }
