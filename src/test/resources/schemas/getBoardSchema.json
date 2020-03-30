@@ -1,5 +1,9 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
   "type": "object",
+  "title": "The Root Schema",
+  "description": "The root schema comprises the entire JSON document.",
   "required": [
     "id",
     "name",
@@ -22,7 +26,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "5e6f8eaf7e6af369e18a4461"
+        "5e812baddbe9f33feb6be3e6"
       ]
     },
     "name": {
@@ -32,7 +36,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "test02FV"
+        "GP Board"
       ]
     },
     "desc": {
@@ -42,7 +46,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        ""
+        "testing... boards"
       ]
     },
     "descData": {
@@ -99,7 +103,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "https://trello.com/b/puBzEveV/test02fv"
+        "https://trello.com/b/pWuIozIv/gp-board"
       ]
     },
     "shortUrl": {
@@ -109,7 +113,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "https://trello.com/b/puBzEveV"
+        "https://trello.com/b/pWuIozIv"
       ]
     },
     "prefs": {
@@ -120,29 +124,29 @@
       "default": {},
       "examples": [
         {
+          "selfJoin": true,
+          "canBePrivate": true,
           "voting": "disabled",
-          "permissionLevel": "private",
-          "canBeOrg": true,
           "canInvite": true,
+          "canBeOrg": true,
+          "permissionLevel": "private",
           "comments": "members",
           "backgroundColor": "#0079BF",
-          "background": "blue",
           "cardCovers": true,
           "invitations": "members",
+          "background": "blue",
           "canBeEnterprise": true,
           "backgroundImage": null,
           "backgroundImageScaled": null,
           "backgroundTile": false,
           "backgroundTopColor": "#0079BF",
+          "canBePublic": true,
+          "backgroundBottomColor": "#0079BF",
           "isTemplate": false,
           "cardAging": "regular",
-          "backgroundBottomColor": "#0079BF",
-          "canBePublic": true,
           "hideVotes": false,
           "backgroundBrightness": "dark",
-          "calendarFeedEnabled": false,
-          "selfJoin": true,
-          "canBePrivate": true
+          "calendarFeedEnabled": false
         }
       ],
       "required": [
@@ -409,16 +413,16 @@
       "default": {},
       "examples": [
         {
-          "lime": "",
-          "blue": "",
-          "green": "",
-          "sky": "",
           "yellow": "",
           "red": "",
           "orange": "",
           "purple": "",
           "black": "",
-          "pink": ""
+          "pink": "",
+          "lime": "",
+          "blue": "",
+          "green": "",
+          "sky": ""
         }
       ],
       "required": [
