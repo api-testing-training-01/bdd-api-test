@@ -1,0 +1,259 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "title": "The Root Schema",
+  "description": "The root schema comprises the entire JSON document.",
+  "required": [
+    "id",
+    "name",
+    "desc",
+    "descData",
+    "closed",
+    "idOrganization",
+    "pinned",
+    "url",
+    "shortUrl",
+    "prefs",
+    "labelNames"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The Id Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "name": {
+      "type": "string",
+      "title": "The Name Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "desc": {
+      "type": "string",
+      "title": "The Desc Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "descData": {
+      "title": "The Descdata Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": null
+    },
+    "closed": {
+      "type": "boolean",
+      "title": "The Closed Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false
+    },
+    "idOrganization": {
+      "type": "null",
+      "title": "The Idorganization Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "pinned": {
+      "type": "boolean",
+      "title": "The Pinned Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false
+    },
+    "url": {
+      "type": "string",
+      "title": "The Url Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "shortUrl": {
+      "type": "string",
+      "title": "The Shorturl Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": ""
+    },
+    "prefs": {
+      "type": "object",
+      "title": "The Prefs Schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": {},
+
+      "required": [
+        "permissionLevel",
+        "hideVotes",
+        "voting",
+        "comments",
+        "invitations",
+        "selfJoin",
+        "cardCovers",
+        "isTemplate",
+        "cardAging",
+        "calendarFeedEnabled",
+        "background",
+        "backgroundImage",
+        "backgroundImageScaled",
+        "backgroundTile",
+        "backgroundBrightness",
+        "backgroundBottomColor",
+        "backgroundTopColor",
+        "canBePublic",
+        "canBeEnterprise",
+        "canBeOrg",
+        "canBePrivate",
+        "canInvite"
+      ],
+      "properties": {
+        "permissionLevel": {
+          "type": "string",
+          "title": "The Permissionlevel Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "hideVotes": {
+          "type": "boolean",
+          "title": "The Hidevotes Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "voting": {
+          "type": "string",
+          "title": "The Voting Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "comments": {
+          "type": "string",
+          "title": "The Comments Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "invitations": {
+          "type": "string",
+          "title": "The Invitations Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "selfJoin": {
+          "type": "boolean",
+          "title": "The Selfjoin Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "cardCovers": {
+          "type": "boolean",
+          "title": "The Cardcovers Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "isTemplate": {
+          "type": "boolean",
+          "title": "The Istemplate Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "cardAging": {
+          "type": "string",
+          "title": "The Cardaging Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "calendarFeedEnabled": {
+          "type": "boolean",
+          "title": "The Calendarfeedenabled Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "background": {
+          "type": "string",
+          "title": "The Background Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "backgroundImage": {
+          "type": "null",
+          "title": "The Backgroundimage Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "backgroundImageScaled": {
+          "type": "null",
+          "title": "The Backgroundimagescaled Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "items": {
+            "type": "object",
+            "title": "The Items Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": {},
+
+            "required": [
+              "width",
+              "height",
+              "url"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "title": "The Width Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+              },
+              "height": {
+                "type": "integer",
+                "title": "The Height Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": 0
+              },
+              "url": {
+                "type": "string",
+                "title": "The Url Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": ""
+              }
+            }
+          }
+        },
+        "backgroundTile": {
+          "type": "boolean",
+          "title": "The Backgroundtile Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "backgroundBrightness": {
+          "type": "string",
+          "title": "The Backgroundbrightness Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "backgroundBottomColor": {
+          "type": "string",
+          "title": "The Backgroundbottomcolor Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "backgroundTopColor": {
+          "type": "string",
+          "title": "The Backgroundtopcolor Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": ""
+        },
+        "canBePublic": {
+          "type": "boolean",
+          "title": "The Canbepublic Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "canBeEnterprise": {
+          "type": "boolean",
+          "title": "The Canbeenterprise Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        },
+        "canBeOrg": {
+          "type": "boolean",
+          "title": "The Canbeorg Schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": false
+        }
+      }
+    }
+  }
+}
