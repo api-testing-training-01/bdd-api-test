@@ -1,25 +1,53 @@
 Feature: Boards
 
-  @createBoardPreCondition @deleteBoardPostCondition
+  @deleteBoardPostCondition
   Scenario: Board would be retrieved
-    When I send GET request to "https://api.trello.com/1/boards/"
-    Then Response status code should be 200
-      And Response body should match with "src/test/resources/schemas/jorge/getSchema.json" json schema
+    Given I send POST request to "https://api.trello.com/1/boards/" with following data
+      | name  | BoardPOSTName           |
+      | desc  | This is my description  |
+      Then I store response as "TrelloResponse"
+      And Response status code should be 200
+    When I send GET request to "https://api.trello.com/1/boards/{TrelloResponse.id}"
+      Then Response body should match with "src/test/resources/schemas/jorge/getSchema.json" json schema
+      And Response should contain the following data
+        |name| BoardPOSTName|
+        |desc| This is my description |
 
   @deleteBoardPostCondition
   Scenario: Board would be created
-    When I send POST request to "https://api.trello.com/1/boards/" with body "BoardName"
+    When I send POST request to "https://api.trello.com/1/boards/" with following data
+      | name  | BoardPOSTName           |
+      | desc  | This is my description  |
     Then Response status code should be 200
-    And Response body should match with "src/test/resources/schemas/jorge/postSchema.json" json schema
+      And Response body should match with "src/test/resources/schemas/jorge/postSchema.json" json schema
+      And Response should contain the following data
+      |name| BoardPOSTName|
+      |desc| This is my description |
 
-  @createBoardPreCondition @deleteBoardPostCondition
-  Scenario: Board name would be updated
-    When I send PUT request to "https://api.trello.com/1/boards/" name "BoardNameUpdated"
+  @deleteBoardPostCondition
+  Scenario: Board fields would be updated
+    Given I send POST request to "https://api.trello.com/1/boards/" with following data
+        | name  | BoardPutName           |
+        | desc  | This is my description  |
+
     Then Response status code should be 200
-    And Response body should match with "src/test/resources/schemas/jorge/putSchema.json" json schema
+      And I store response as "TrelloResponse" updating the following fields
+        | name  | BoardPutNameModified           |
+        | desc  | This is my description modified  |
 
-  @createBoardPreCondition
+    When I send PUT request to "https://api.trello.com/1/boards/{TrelloResponse.id}?name={TrelloResponse.name}&desc={TrelloResponse.desc}"
+      Then Response status code should be 200
+      And Response body should match with "src/test/resources/schemas/jorge/putSchema.json" json schema
+      And Response should contain the following data
+        |name| BoardPutNameModified|
+        |desc| This is my description modified |
+
   Scenario: Board would be deleted
-    When I send DELETE request to "https://api.trello.com/1/boards/"
-    Then Response status code should be 200
-    And Response body should match with "src/test/resources/schemas/jorge/deleteSchema.json" json schema
+    Given I send POST request to "https://api.trello.com/1/boards/" with following data
+      | name  | BoardPutName           |
+      | desc  | This is my description  |
+      Then I store response as "TrelloResponse"
+      And Response status code should be 200
+    When I send DELETE request to "https://api.trello.com/1/boards/{TrelloResponse.id}"
+      Then Response status code should be 200
+      And Response body should match with "src/test/resources/schemas/jorge/deleteSchema.json" json schema
