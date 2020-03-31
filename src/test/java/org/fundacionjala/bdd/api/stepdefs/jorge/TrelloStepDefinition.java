@@ -38,13 +38,19 @@ public class TrelloStepDefinition {
     }
 
     @When("I send PUT request to {string}")
-    public void iSendPUTRequestTo(String endPoint) {
-        response = requestBuilderWithParam(null).put(EndPointBuilder.build(helper.getResponseMap(), helper.getParamValue(), endPoint));
+    public void iSendPUTRequestTo(final String endPoint) {
+        response = requestBuilderWithParam(null)
+                    .put(EndPointBuilder.build(helper.getResponseMap(),
+                                               helper.getParamValue(),
+                                               endPoint));
     }
 
     @When("I send DELETE request to {string}")
     public void iSendDeleteRequest(final String endPoint) {
-        response = requestBuilderWithParam(null).delete(EndPointBuilder.build(helper.getResponseMap(), helper.getParamValue(), endPoint));
+        response = requestBuilderWithParam(null)
+                    .delete(EndPointBuilder.build(helper.getResponseMap(),
+                                                  helper.getParamValue(),
+                                                  endPoint));
     }
 
     @Then("Response status code should be {int}")
@@ -53,20 +59,21 @@ public class TrelloStepDefinition {
     }
 
     @Then("I store response as {string}")
-    public void iStoreResponseAs(String responseKey) {
+    public void iStoreResponseAs(final String responseKey) {
         helper.addResponse(responseKey, response);
         helper.setKey(responseKey);
     }
 
     @Then("I store response as {string} updating the following fields")
-    public void iStoreResponseAsWithTheTheFollowingDataUpdated(String responseKey, final Map<String, String> newData) {
+    public void iStoreResponseAsWithTheTheFollowingDataUpdated(final String responseKey,
+                                                               final Map<String, String> newData) {
         helper.addResponse(responseKey, response);
         helper.setParamValue(newData);
     }
 
     @And("Response should contain the following data")
     public void responseShouldContainTheFollowingData(final Map<String, String> paramExpected) {
-        for(Map.Entry<String, String> entry : paramExpected.entrySet()) {
+        for (Map.Entry<String, String> entry : paramExpected.entrySet()) {
             String actualResult = response.getBody().jsonPath().getString(entry.getKey());
             assertEquals(actualResult, entry.getValue());
         }
@@ -81,7 +88,7 @@ public class TrelloStepDefinition {
     @And("Updating the following fields")
     public void updatingTheFollowingFields(final Map<String, String> newData) {
         Response res = helper.getResponseMap().get(helper.getKey());
-        for(Map.Entry<String, String> entry : newData.entrySet()) {
+        for (Map.Entry<String, String> entry : newData.entrySet()) {
             String actualName = res.getBody().jsonPath().getString(entry.getKey());
             res.getBody().jsonPath().getString(entry.getKey()).replaceAll(actualName, entry.getValue());
         }
@@ -97,7 +104,7 @@ public class TrelloStepDefinition {
             return requestResult.when();
         }
 
-        for(Map.Entry<String, String> entry : param.entrySet()) {
+        for (Map.Entry<String, String> entry : param.entrySet()) {
             requestResult.queryParam(entry.getKey(), entry.getValue());
         }
         return requestResult.when();

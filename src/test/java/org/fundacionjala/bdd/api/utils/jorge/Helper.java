@@ -34,7 +34,7 @@ public class Helper {
         return responseMap;
     }
 
-    public void setParamValue(Map<String, String> paramValue) {
+    public void setParamValue(final Map<String, String> paramValue) {
         this.paramValue.putAll(paramValue);
     }
 
@@ -46,7 +46,7 @@ public class Helper {
         return key;
     }
 
-    public void setKey(String key) {
+    public void setKey(final String key) {
         this.key = key;
     }
 }
