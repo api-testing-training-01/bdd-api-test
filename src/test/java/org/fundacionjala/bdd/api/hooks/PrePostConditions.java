@@ -4,6 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.response.Response;
 import org.fundacionjala.bdd.api.EnvReader;
+import org.fundacionjala.bdd.api.utils.DynamicIdHelper;
 import org.fundacionjala.bdd.api.utils.Helper;
 
 import static io.restassured.RestAssured.given;
@@ -18,13 +19,14 @@ public class PrePostConditions {
 
     @After(value = "@deleteBoard")
     public void deleteBoard() {
-        String path = "https://api.trello.com/1/boards/".concat(helper.getSingleId());
+        String processedEndpoint = DynamicIdHelper.buildEndpoint(helper.getResponses(),
+                "https://api.trello.com/1/boards/{PostResponse.id}");
         given()
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
                 .when()
-                .delete(path);
+                .delete(processedEndpoint);
     }
 
     @Before(value = "@createBoard")
@@ -33,10 +35,11 @@ public class PrePostConditions {
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
-                .queryParam("name", "testAPI005FVTrello")
+                .queryParam("name", "FV - Trello board")
                 .when()
                 .post("https://api.trello.com/1/boards");
         String boardId = createResponse.jsonPath().getString("id");
         helper.addSingleId(boardId);
+        helper.addResponse("PostResponse", createResponse);
     }
 }

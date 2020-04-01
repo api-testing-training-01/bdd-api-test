@@ -5,9 +5,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.fundacionjala.bdd.api.EnvReader;
+import org.fundacionjala.bdd.api.utils.DynamicIdHelper;
 import org.fundacionjala.bdd.api.utils.Helper;
+import org.testng.AssertJUnit;
 
 import java.io.File;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
@@ -21,17 +24,18 @@ public class MyStepdefs {
         this.helper = helper;
     }
 
-    @When("I send POST request to {string}")
-    public void iSendPOSTRequestTo(final String endpoint) {
+    @When("I send POST request to {string} with name")
+    public void iSendPOSTRequestTo(final String endpoint, final String name) {
         response = given()
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
-                .queryParam("name", "testAPI001FVTrello")
+                .queryParam("name", name)
                 .when()
                 .post(endpoint);
         String boardId = response.jsonPath().getString("id");
         helper.addSingleId(boardId);
+        helper.addResponse("PostResponse", response);
     }
 
     @Then("Response status code should be {int}")
@@ -46,35 +50,42 @@ public class MyStepdefs {
 
     @When("I send DELETE request to {string}")
     public void iSendDELETERequestTo(final String endpoint) {
-        String path = endpoint.concat(helper.getSingleId());
+        String processedEndpoint = DynamicIdHelper.buildEndpoint(helper.getResponses(), endpoint);
         response = given()
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
                 .when()
-                .delete(path);
+                .delete(processedEndpoint);
     }
 
     @When("I send GET request to {string}")
     public void iSendGETRequestTo(final String endpoint) {
-        String path = endpoint.concat(helper.getSingleId());
+        String processedEndpoint = DynamicIdHelper.buildEndpoint(helper.getResponses(), endpoint);
         response = given()
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
                 .when()
-                .get(path);
+                .get(processedEndpoint);
     }
 
-    @When("I send PUT request to {string}")
-    public void iSendPUTRequestTo(final String endpoint) {
-        String path = endpoint.concat(helper.getSingleId());
+    @When("I send PUT request to {string} to desc")
+    public void iSendPUTRequestTo(final String endpoint, final String text) {
+        String processedEndpoint = DynamicIdHelper.buildEndpoint(helper.getResponses(), endpoint);
         response = given()
                 .contentType("Application/Json")
                 .queryParam("token", EnvReader.getInstance().getApiToken())
                 .queryParam("key", EnvReader.getInstance().getApiKey())
-                .queryParam("text", "success!")
+                .queryParam("desc", text)
                 .when()
-                .put(path);
+                .put(processedEndpoint);
+    }
+
+    @Then("Response should contain data")
+    public void responseShouldContainData(final Map<String, String> expectedData) {
+        for (String key : expectedData.keySet()) {
+            AssertJUnit.assertEquals(response.jsonPath().getString(key), expectedData.get(key));
+        }
     }
 }

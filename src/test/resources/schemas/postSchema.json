@@ -1,5 +1,9 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
   "type": "object",
+  "title": "The Root Schema",
+  "description": "The root schema comprises the entire JSON document.",
   "required": [
     "id",
     "name",
@@ -23,7 +27,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "5e6f8eaf7e6af369e18a4461"
+        "5e7115897e4c95472ed19a93"
       ]
     },
     "name": {
@@ -33,7 +37,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "test02FV"
+        "New Board with Java"
       ]
     },
     "desc": {
@@ -43,7 +47,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        ""
+        "This is a test with java and rest assure"
       ]
     },
     "descData": {
@@ -100,7 +104,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "https://trello.com/b/puBzEveV/test02fv"
+        "https://trello.com/b/YQ5NRFQQ/new-board-with-java"
       ]
     },
     "shortUrl": {
@@ -110,7 +114,7 @@
       "description": "An explanation about the purpose of this instance.",
       "default": "",
       "examples": [
-        "https://trello.com/b/puBzEveV"
+        "https://trello.com/b/YQ5NRFQQ"
       ]
     },
     "prefs": {
@@ -121,6 +125,16 @@
       "default": {},
       "examples": [
         {
+          "canBeEnterprise": true,
+          "backgroundImageScaled": null,
+          "backgroundImage": null,
+          "backgroundTile": false,
+          "backgroundTopColor": "#0079BF",
+          "cardAging": "regular",
+          "isTemplate": false,
+          "canBePublic": true,
+          "backgroundBottomColor": "#0079BF",
+          "hideVotes": false,
           "backgroundBrightness": "dark",
           "calendarFeedEnabled": false,
           "selfJoin": true,
@@ -131,19 +145,9 @@
           "permissionLevel": "private",
           "comments": "members",
           "backgroundColor": "#0079BF",
-          "background": "blue",
-          "cardCovers": true,
           "invitations": "members",
-          "canBeEnterprise": true,
-          "backgroundImageScaled": null,
-          "backgroundImage": null,
-          "backgroundTile": false,
-          "backgroundTopColor": "#0079BF",
-          "cardAging": "regular",
-          "canBePublic": true,
-          "backgroundBottomColor": "#0079BF",
-          "isTemplate": false,
-          "hideVotes": false
+          "background": "blue",
+          "cardCovers": true
         }
       ],
       "required": [
@@ -410,16 +414,16 @@
       "default": {},
       "examples": [
         {
+          "red": "",
+          "orange": "",
+          "purple": "",
           "black": "",
           "pink": "",
           "lime": "",
           "blue": "",
           "green": "",
           "sky": "",
-          "yellow": "",
-          "red": "",
-          "orange": "",
-          "purple": ""
+          "yellow": ""
         }
       ],
       "required": [
