@@ -1,0 +1,502 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "required": [
+        "id",
+        "cards",
+        "labels",
+        "lists",
+        "members",
+        "memberships"
+    ],
+    "properties": {
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "title": "The Id Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "5e852c7004866a65dc47fcf7"
+            ]
+        },
+        "cards": {
+            "$id": "#/properties/cards",
+            "type": "array",
+            "title": "The Cards Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": []
+        },
+        "labels": {
+            "$id": "#/properties/labels",
+            "type": "array",
+            "title": "The Labels Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "items": {
+                "$id": "#/properties/labels/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "name": "",
+                        "color": "orange",
+                        "id": "5e852c707669b2254999f3e4",
+                        "idBoard": "5e852c7004866a65dc47fcf7"
+                    },
+                    {
+                        "name": "",
+                        "color": "green",
+                        "id": "5e852c707669b2254999f3e5",
+                        "idBoard": "5e852c7004866a65dc47fcf7"
+                    },
+                    {
+                        "name": "",
+                        "color": "yellow",
+                        "id": "5e852c707669b2254999f3e7",
+                        "idBoard": "5e852c7004866a65dc47fcf7"
+                    },
+                    {
+                        "name": "",
+                        "color": "red",
+                        "id": "5e852c707669b2254999f3e6",
+                        "idBoard": "5e852c7004866a65dc47fcf7"
+                    },
+                    {
+                        "name": "",
+                        "color": "blue",
+                        "id": "5e852c707669b2254999f3eb",
+                        "idBoard": "5e852c7004866a65dc47fcf7"
+                    },
+                    {
+                        "color": "purple",
+                        "id": "5e852c707669b2254999f3ea",
+                        "idBoard": "5e852c7004866a65dc47fcf7",
+                        "name": ""
+                    }
+                ],
+                "required": [
+                    "id",
+                    "idBoard",
+                    "name",
+                    "color"
+                ],
+                "properties": {
+                    "id": {
+                        "$id": "#/properties/labels/items/properties/id",
+                        "type": "string",
+                        "title": "The Id Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5e852c707669b2254999f3e4"
+                        ]
+                    },
+                    "idBoard": {
+                        "$id": "#/properties/labels/items/properties/idBoard",
+                        "type": "string",
+                        "title": "The Idboard Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5e852c7004866a65dc47fcf7"
+                        ]
+                    },
+                    "name": {
+                        "$id": "#/properties/labels/items/properties/name",
+                        "type": "string",
+                        "title": "The Name Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            ""
+                        ]
+                    },
+                    "color": {
+                        "$id": "#/properties/labels/items/properties/color",
+                        "type": "string",
+                        "title": "The Color Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "orange"
+                        ]
+                    }
+                }
+            }
+        },
+        "lists": {
+            "$id": "#/properties/lists",
+            "type": "array",
+            "title": "The Lists Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "items": {
+                "$id": "#/properties/lists/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "idBoard": "5e852c7004866a65dc47fcf7",
+                        "id": "5e852c7004866a65dc47fcf8",
+                        "name": "To Do",
+                        "closed": false,
+                        "softLimit": null,
+                        "subscribed": false,
+                        "pos": 16384.0
+                    },
+                    {
+                        "pos": 32768.0,
+                        "subscribed": false,
+                        "idBoard": "5e852c7004866a65dc47fcf7",
+                        "id": "5e852c7004866a65dc47fcf9",
+                        "name": "Doing",
+                        "closed": false,
+                        "softLimit": null
+                    },
+                    {
+                        "subscribed": false,
+                        "pos": 49152.0,
+                        "idBoard": "5e852c7004866a65dc47fcf7",
+                        "id": "5e852c7004866a65dc47fcfa",
+                        "name": "Done",
+                        "closed": false,
+                        "softLimit": null
+                    }
+                ],
+                "required": [
+                    "id",
+                    "name",
+                    "closed",
+                    "idBoard",
+                    "pos",
+                    "subscribed",
+                    "softLimit"
+                ],
+                "properties": {
+                    "id": {
+                        "$id": "#/properties/lists/items/properties/id",
+                        "type": "string",
+                        "title": "The Id Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5e852c7004866a65dc47fcf8"
+                        ]
+                    },
+                    "name": {
+                        "$id": "#/properties/lists/items/properties/name",
+                        "type": "string",
+                        "title": "The Name Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "To Do"
+                        ]
+                    },
+                    "closed": {
+                        "$id": "#/properties/lists/items/properties/closed",
+                        "type": "boolean",
+                        "title": "The Closed Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "idBoard": {
+                        "$id": "#/properties/lists/items/properties/idBoard",
+                        "type": "string",
+                        "title": "The Idboard Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5e852c7004866a65dc47fcf7"
+                        ]
+                    },
+                    "pos": {
+                        "$id": "#/properties/lists/items/properties/pos",
+                        "type": "integer",
+                        "title": "The Pos Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": 0,
+                        "examples": [
+                            16384
+                        ]
+                    },
+                    "subscribed": {
+                        "$id": "#/properties/lists/items/properties/subscribed",
+                        "type": "boolean",
+                        "title": "The Subscribed Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "softLimit": {
+                        "$id": "#/properties/lists/items/properties/softLimit",
+                        "title": "The Softlimit Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": null,
+                        "examples": [
+                            null
+                        ]
+                    }
+                }
+            }
+        },
+        "members": {
+            "$id": "#/properties/members",
+            "type": "array",
+            "title": "The Members Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "items": {
+                "$id": "#/properties/members/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "id": "5a8af29038b406641e6adf75",
+                        "initials": "AN",
+                        "idMemberReferrer": null,
+                        "avatarUrl": null,
+                        "nonPublic": {},
+                        "activityBlocked": false,
+                        "nonPublicAvailable": false,
+                        "memberType": "normal",
+                        "confirmed": true,
+                        "fullName": "Alejandra Neolopan",
+                        "avatarHash": null,
+                        "username": "alejandraneolopan"
+                    }
+                ],
+                "required": [
+                    "id",
+                    "activityBlocked",
+                    "avatarHash",
+                    "avatarUrl",
+                    "fullName",
+                    "idMemberReferrer",
+                    "initials",
+                    "nonPublic",
+                    "nonPublicAvailable",
+                    "username",
+                    "confirmed",
+                    "memberType"
+                ],
+                "properties": {
+                    "id": {
+                        "$id": "#/properties/members/items/properties/id",
+                        "type": "string",
+                        "title": "The Id Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5a8af29038b406641e6adf75"
+                        ]
+                    },
+                    "activityBlocked": {
+                        "$id": "#/properties/members/items/properties/activityBlocked",
+                        "type": "boolean",
+                        "title": "The Activityblocked Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "avatarHash": {
+                        "$id": "#/properties/members/items/properties/avatarHash",
+                        "title": "The Avatarhash Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": null,
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "avatarUrl": {
+                        "$id": "#/properties/members/items/properties/avatarUrl",
+                        "title": "The Avatarurl Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": null,
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "fullName": {
+                        "$id": "#/properties/members/items/properties/fullName",
+                        "type": "string",
+                        "title": "The Fullname Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "Alejandra Neolopan"
+                        ]
+                    },
+                    "idMemberReferrer": {
+                        "$id": "#/properties/members/items/properties/idMemberReferrer",
+                        "title": "The Idmemberreferrer Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": null,
+                        "examples": [
+                            null
+                        ]
+                    },
+                    "initials": {
+                        "$id": "#/properties/members/items/properties/initials",
+                        "type": "string",
+                        "title": "The Initials Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "AN"
+                        ]
+                    },
+                    "nonPublic": {
+                        "$id": "#/properties/members/items/properties/nonPublic",
+                        "type": "object",
+                        "title": "The Nonpublic Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {}
+                        ]
+                    },
+                    "nonPublicAvailable": {
+                        "$id": "#/properties/members/items/properties/nonPublicAvailable",
+                        "type": "boolean",
+                        "title": "The Nonpublicavailable Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "username": {
+                        "$id": "#/properties/members/items/properties/username",
+                        "type": "string",
+                        "title": "The Username Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "alejandraneolopan"
+                        ]
+                    },
+                    "confirmed": {
+                        "$id": "#/properties/members/items/properties/confirmed",
+                        "type": "boolean",
+                        "title": "The Confirmed Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            true
+                        ]
+                    },
+                    "memberType": {
+                        "$id": "#/properties/members/items/properties/memberType",
+                        "type": "string",
+                        "title": "The Membertype Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "normal"
+                        ]
+                    }
+                }
+            }
+        },
+        "memberships": {
+            "$id": "#/properties/memberships",
+            "type": "array",
+            "title": "The Memberships Schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "items": {
+                "$id": "#/properties/memberships/items",
+                "type": "object",
+                "title": "The Items Schema",
+                "description": "An explanation about the purpose of this instance.",
+                "default": {},
+                "examples": [
+                    {
+                        "id": "5e852c7004866a65dc47fcfb",
+                        "unconfirmed": false,
+                        "deactivated": false,
+                        "idMember": "5a8af29038b406641e6adf75",
+                        "memberType": "admin"
+                    }
+                ],
+                "required": [
+                    "id",
+                    "idMember",
+                    "memberType",
+                    "unconfirmed",
+                    "deactivated"
+                ],
+                "properties": {
+                    "id": {
+                        "$id": "#/properties/memberships/items/properties/id",
+                        "type": "string",
+                        "title": "The Id Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5e852c7004866a65dc47fcfb"
+                        ]
+                    },
+                    "idMember": {
+                        "$id": "#/properties/memberships/items/properties/idMember",
+                        "type": "string",
+                        "title": "The Idmember Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "5a8af29038b406641e6adf75"
+                        ]
+                    },
+                    "memberType": {
+                        "$id": "#/properties/memberships/items/properties/memberType",
+                        "type": "string",
+                        "title": "The Membertype Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": "",
+                        "examples": [
+                            "admin"
+                        ]
+                    },
+                    "unconfirmed": {
+                        "$id": "#/properties/memberships/items/properties/unconfirmed",
+                        "type": "boolean",
+                        "title": "The Unconfirmed Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    },
+                    "deactivated": {
+                        "$id": "#/properties/memberships/items/properties/deactivated",
+                        "type": "boolean",
+                        "title": "The Deactivated Schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": false,
+                        "examples": [
+                            false
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
