@@ -7,6 +7,8 @@ public final class EnvReader {
     private static final String PROP_FILE = "gradle.properties";
     private static final String API_TOKEN = "api.token";
     private static final String API_KEY = "api.key";
+    private static final String API_URL = "api.url";
+
     private static EnvReader instance;
 
     private PropReader propReader;
@@ -28,5 +30,9 @@ public final class EnvReader {
 
     public String getApiKey() {
         return propReader.getEnv(API_KEY);
+    }
+
+    public String getApiUrl() {
+        return propReader.getEnv(API_URL);
     }
 }
