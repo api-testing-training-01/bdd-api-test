@@ -56,3 +56,4 @@ Feature: Boards
     When DELETE "/1/boards/{NewBoard.id}" is executed
     Then 200 status is retrieved
     And schema should match with "src/test/resources/schemas/alejandraNeolopan/deleteSchema.json"
+

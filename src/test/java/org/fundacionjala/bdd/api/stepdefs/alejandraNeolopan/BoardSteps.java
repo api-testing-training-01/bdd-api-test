@@ -96,6 +96,7 @@ public class BoardSteps {
                 + "unconfirmedBoardInvitation%2CunconfirmedOrganizationInvitation"
                 + "%2CupdateBoard%2CupdateCard%3Aclosed%2C"
                 + "updateCard%3Adue%2CupdateCard%3AidList%2CupdateCheckItemStateOnCard%2CupdateList%3Aclosed";
+
         String field = "closed%2CcreationMethod%2CdateLastActivity%2CdateLastView"
                 + "%2CdatePluginDisable%2CenterpriseOwned%2C"
                 + "id%2CidOrganization%2Cname%2Cprefs%2CshortLink%2CshortUrl%2Curl%2Cdesc"
@@ -127,6 +128,7 @@ public class BoardSteps {
     public void putIsExecutedWithChanges(final String endPoint, final Map<String, String> parameters) {
         String processedEndPoint = DynamicIdHelper.buildEndpoint(helper.getResponses(), endPoint);
         String finalEndPoint = BoardsCompleteEndPoint.build(processedEndPoint);
+
         response = given()
                 .header("Content-Type", "application/json")
                 .queryParam("name", parameters.get("name"))
@@ -164,5 +166,4 @@ public class BoardSteps {
         response.then().assertThat().body(matchesJsonSchema(new File(path)));
     }
 }
-
 

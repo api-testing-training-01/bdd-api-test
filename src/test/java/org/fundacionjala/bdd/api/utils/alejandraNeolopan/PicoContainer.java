@@ -22,6 +22,7 @@ public class PicoContainer {
     public List<String> getIds() {
         return ids;
     }
+
     public void addResponse(final String key, final Response response) {
         responses.put(key, response);
     }
