@@ -34,9 +34,6 @@ public class MyStepdefs {
                 .when()
                 .body(body)
                 .post(endpoint);
-//        String boardId = response.jsonPath().getString("id");
-//        helper.addNewId(boardId);
-//        helper.addResponse("PostResponse", response);
     }
 
     @Then("Response status code should be {int}")
